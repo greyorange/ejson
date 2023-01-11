@@ -41,22 +41,28 @@
 %%% Types
 %%%----------------------------------------------------------------------------
 
--type field_name()  :: atom() | string().
+% -type field_name()  :: atom() | string().
 
--type field_def()   :: {default, term()}.
-%-type field_enc()   :: {pre_encode, fun((term(), term()) -> term())} |
-%                       {post_decode, fun((term()) -> term())}.
--type field_opt()   :: field_def() | {type, atom()} | recursive.
--type field_opts()  :: list(field_opt()).
+% -type field_def()   :: {default, term()}.
+% %-type field_enc()   :: {pre_encode, fun((term(), term()) -> term())} |
+% %                       {post_decode, fun((term()) -> term())}.
+% -type field_opt()   :: field_def() | {type, atom()} | recursive.
+% -type field_opts()  :: list(field_opt()).
 
--type type_sel()    :: atom | binary | boolean | list | number | record | string.
--type basic_rule()  :: field_name() |
-                       {type_sel(), field_name()} |
-                       {type_sel(), field_name(), field_opts()} |
-                       {skip, list(field_def())} |
-                       {const, field_name(), term()} |
-                       {generic, field_name(), field_opts()}.
--type rule()        :: list(basic_rule()).
+% -type type_sel()    :: atom | binary | boolean | list | number | record | string.
+% -type basic_rule()  :: field_name() |
+%                        {type_sel(), field_name()} |
+%                        {type_sel(), field_name(), field_opts()} |
+%                        {skip, list(field_def())} |
+%                        {const, field_name(), term()} |
+%                        {generic, field_name(), field_opts()}.
+% -type rule()        :: list(basic_rule()).
+
+ %% TODO: basic_rule() :: one of the type can be {field_name(), list({type_sel(), JsonTermKey :: string()})}
+ %% because as per the implementation, basic rule can many fields as per requirement.
+ %%     for example: -json({person, {string, "name"}, {number, "yearOfBirth"}, {list, "projects"}}).
+ %% For this it will need to change the compliation  method
+-type rule()        :: list().
 
 
 %%%============================================================================
